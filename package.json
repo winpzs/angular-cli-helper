@@ -1,0 +1,194 @@
+{
+  "name": "angularclihelper",
+  "displayName": "angular-cli-helper",
+  "description": "Run angular from vscode commandline.",
+  "icon": "images/angular.png",
+  "version": "1.0.0",
+  "publisher": "winpzs",
+  "bugs": {
+    "url": "https://github.com/winpzs/angular-cli-helper/issues",
+    "email": "winpzs@gmail.com"
+  },
+  "homepage": "https://github.com/winpzs/angular-cli-helper/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/winpzs/angular-cli-helper.git"
+  },
+  "categories": [
+    "Languages",
+    "Other"
+  ],
+  "engines": {
+    "vscode": "^1.5.0"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "TypeScript ng cli configuration",
+      "properties": {
+        "angularclihelper.generateConfig": {
+          "type": "array",
+          "default": [
+            {
+              "command": "ng g component %input% --flat false --spec false",
+              "title": "component/html/css (自动创建目录)"
+            },
+            {
+              "command": "ng g component %input% --flat false --spec false --inline-style true",
+              "title": "component/html (自动创建目录)"
+            },
+            {
+              "command": "ng g component %input% --flat true --spec false",
+              "title": "component/html/css"
+            },
+            {
+              "command": "ng g component %input% --flat true --spec false --inline-style true",
+              "title": "component/html"
+            },
+            {
+              "command": "ng g component %input% --flat true --spec false --inline-style true --inline-template true",
+              "title": "component"
+            },
+            {
+              "command": "ng g module %input% --flat true --spec false",
+              "title": "module"
+            },
+            {
+              "command": "ng g service %input% --flat true --spec false",
+              "title": "service"
+            },
+            {
+              "command": "ng g directive %input% --flat true --spec false",
+              "title": "directive"
+            },
+            {
+              "command": "ng g pipe %input% --flat true --spec false",
+              "title": "pipe"
+            },
+            {
+              "command": "ng g class %input% --flat true --spec false",
+              "title": "class"
+            },
+            {
+              "command": "ng g guard %input% --flat true --spec false",
+              "title": "guard"
+            },
+            {
+              "command": "ng g interface %input% --flat true --spec false",
+              "title": "interface"
+            },
+            {
+              "command": "ng g enum %input% --flat true --spec false",
+              "title": "enum"
+            }
+          ],
+          "description": "ng generate config"
+        },
+        "angularclihelper.buildParam": {
+          "type": "array",
+          "default": [
+            {
+              "param": "",
+              "title": "default"
+            },
+            {
+              "param": "--target=production --environment=prod",
+              "title": "--target=production --environment=prod"
+            },
+            {
+              "param": "--target=production",
+              "title": "--target=production"
+            },
+            {
+              "param": "--target=development --environment=dev",
+              "title": "--target=development --environment=dev"
+            },
+            {
+              "param": "--target=development",
+              "title": "--target=development"
+            }
+          ],
+          "description": "ng build params"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "angularclihelper.generate",
+        "title": "ng generate"
+      },
+      {
+        "command": "angularclihelper.serve",
+        "title": "ng serve"
+      },
+      {
+        "command": "angularclihelper.build",
+        "title": "ng build"
+      },
+      {
+        "command": "angularclihelper.test",
+        "title": "ng test"
+      },
+      {
+        "command": "angularclihelper.e2e",
+        "title": "ng e2e"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "",
+          "command": "angularclihelper.generate",
+          "group": "angularclihelper"
+        },
+        {
+          "when": "",
+          "command": "angularclihelper.build",
+          "group": "angularclihelper"
+        },
+        {
+          "when": "",
+          "command": "angularclihelper.serve",
+          "group": "angularclihelper"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "",
+          "command": "angularclihelper.generate",
+          "group": "angularclihelper"
+        },
+        {
+          "when": "",
+          "command": "angularclihelper.build",
+          "group": "angularclihelper"
+        },
+        {
+          "when": "",
+          "command": "angularclihelper.serve",
+          "group": "angularclihelper"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "vscode:package": "vsce package",
+    "vscode:publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.0.0",
+    "@types/node": "^8.0.0",
+    "mocha": "^4.0.0",
+    "run-in-terminal": "^0.0.3",
+    "rxjs": "^5.0.3",
+    "typescript": "^2.0.0",
+    "vscode": "^1.1.0"
+  }
+}
