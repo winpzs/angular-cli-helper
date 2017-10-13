@@ -69,7 +69,8 @@ export function activate(context: ExtensionContext) {
     }));
     
     let send_build_terminal = function (fsPath: string, cmd: string) {
-        build_terminal || (build_terminal = window.createTerminal("ng-build"));
+        disposeTerminal(build_terminal);
+        build_terminal = window.createTerminal("ng-build");
         build_terminal.show(true);
         fsPath && build_terminal.sendText('cd "' + fsPath + '"');
         build_terminal.sendText(cmd);
@@ -108,10 +109,11 @@ export function activate(context: ExtensionContext) {
     }));
     
     let send_generate_terminal = function (fsPath: string, cmd: string) {
-        build_terminal || (build_terminal = window.createTerminal("ng-generate"));
+        disposeTerminal(generate_terminal);
+        generate_terminal = window.createTerminal("ng-generate");
         //build_terminal.show(true);
-        fsPath && build_terminal.sendText('cd "' + fsPath + '"');
-        build_terminal.sendText(cmd);
+        fsPath && generate_terminal.sendText('cd "' + fsPath + '"');
+        generate_terminal.sendText(cmd);
     };
     context.subscriptions.push(commands.registerCommand('angularclihelper.generate', (args) => {
         let configs = generateConfig(),
