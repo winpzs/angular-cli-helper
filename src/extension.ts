@@ -38,6 +38,10 @@ function buildParam():Array<IBuildParam>{
     return config<Array<IBuildParam>>('buildParam');
 }
 
+function serveParam():Array<IBuildParam>{
+    return config<Array<IBuildParam>>('serveParam');
+}
+
 export function activate(context: ExtensionContext) {
 
     let build_terminal:Terminal,
@@ -60,14 +64,23 @@ export function activate(context: ExtensionContext) {
     });
 
     context.subscriptions.push(commands.registerCommand('angularclihelper.serve', (args) => {
+        let params = serveParam(),
+            picks = params.map((item) => item.title);
+
         let fsPath = getRelativePath(args);
-        disposeTerminal(serve_terminal);
-        serve_terminal = window.createTerminal("ng-serve");
-        serve_terminal.show(true);
-        serve_terminal.sendText('cd "' + fsPath + '"');
-        serve_terminal.sendText("ng serve");
+        window.showQuickPick(picks).then((data) => {
+                if (!data) return;
+                let item = params.find((item) => item.title == data);
+                if (!item) return;
+                disposeTerminal(serve_terminal);
+                serve_terminal = window.createTerminal("ng-serve");
+                serve_terminal.show(true);
+                serve_terminal.sendText('cd "' + fsPath + '"');
+                serve_terminal.sendText("ng serve " + item.param);
+            });
+
     }));
-    
+
     let send_build_terminal = function (fsPath: string, cmd: string) {
         disposeTerminal(build_terminal);
         build_terminal = window.createTerminal("ng-build");

@@ -3,7 +3,7 @@
   "displayName": "angular-cli-helper",
   "description": "Run angular from vscode commandline.",
   "icon": "images/angular.png",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "winpzs",
   "bugs": {
     "url": "https://github.com/winpzs/angular-cli-helper/issues",
@@ -40,6 +40,10 @@
             {
               "command": "ng g component %input% --flat false --spec false --inline-style true",
               "title": "component/html (自动创建目录)"
+            },
+            {
+              "command": "ng g component %input% --flat false --spec true",
+              "title": "component/html/css/spec (自动创建目录,全)"
             },
             {
               "command": "ng g component %input% --flat true --spec false",
@@ -96,12 +100,12 @@
               "title": "default"
             },
             {
-              "param": "--target=production --environment=prod",
-              "title": "--target=production --environment=prod"
+              "param": "--target=production --environment=prod --aot",
+              "title": "--target=production --environment=prod --aot"
             },
             {
-              "param": "--target=production",
-              "title": "--target=production"
+              "param": "--target=production --aot",
+              "title": "--target=production --aot"
             },
             {
               "param": "--target=development --environment=dev",
@@ -113,6 +117,28 @@
             }
           ],
           "description": "ng build params"
+        },
+        "angularclihelper.serveParam": {
+          "type": "array",
+          "default": [
+            {
+              "param": "",
+              "title": "default"
+            },
+            {
+              "param": "--environment=dev",
+              "title": "--environment=dev"
+            },
+            {
+              "param": "--environment=dev --hmr true",
+              "title": "--environment=dev --hmr true"
+            },
+            {
+              "param": "--prod --environment=prod --aot",
+              "title": "--prod --environment=prod --aot"
+            }
+          ],
+          "description": "ng serve params"
         }
       }
     },

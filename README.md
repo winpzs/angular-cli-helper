@@ -10,9 +10,14 @@
 ## 相关配置
 
 1. angularclihelper.generateConfig: 生成指令配置
-2. angularclihelper.buildParam: build参数配置
+2. angularclihelper.buildParam: ng build参数配置
+3. angularclihelper.serveParam: ng serve参数配置
 
 ## Changelog
+
+### 1.0.1
+
+1. ng serve参数可配置
 
 ### 1.0.0
 
