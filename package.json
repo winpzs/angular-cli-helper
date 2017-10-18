@@ -130,12 +130,16 @@
               "title": "--environment=dev"
             },
             {
-              "param": "--environment=dev --hmr true",
-              "title": "--environment=dev --hmr true"
+              "param": "--environment=hmr --hmr true",
+              "title": "--environment=hmr --hmr true"
             },
             {
               "param": "--prod --environment=prod --aot",
               "title": "--prod --environment=prod --aot"
+            },
+            {
+              "param": "--proxy-config proxy.conf.js --environment=dev",
+              "title": "--proxy-config proxy.conf.js --environment=dev"
             }
           ],
           "description": "ng serve params"
