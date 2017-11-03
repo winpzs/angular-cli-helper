@@ -19,6 +19,7 @@ function getRelativePath(args): string {
 export interface IGenerateConfig{
     command:string;
     title:string;
+    params:Array<{param:string;title:string;}>;
 }
 
 export interface IBuildParam{
@@ -133,15 +134,10 @@ export function activate(context: ExtensionContext) {
             picks = configs.map((item) => item.title);
 
         let fsPath = getRelativePath(args),
-            curPath = getCurrentPath(args);
-        window.showQuickPick(picks).then((data) => {
-            if (!data) return;
-            let item = configs.find((item) => item.title == data);
-            if (!item || !item.command) return;
-
-            let defaultName = path.basename(curPath);
+            curPath = getCurrentPath(args),
+            defaultName = path.basename(curPath);
             defaultName = defaultName.split('.')[0];
-
+        let generateInput = function(command:string, param:string){
             window.showInputBox({
                 prompt: '请输入文件名称？',
                 value: defaultName
@@ -151,12 +147,32 @@ export function activate(context: ExtensionContext) {
                 else if (/[~`!#$%\^&*+=\[\]\\';,{}|\\":<>\?]/g.test(fileName)) {
                     window.showInformationMessage('文件名称存在不合法字符!');
                 } else {
-                    let cmd = item.command.replace(/\%input\%/gi, fileName);
-                    console.log(cmd);
+                    let cmd = command.replace(/\%input\%/gi, fileName).replace(/\%param\%/gi, param);
                     send_generate_terminal(fsPath, cmd);
                 }
             },
             (error) => console.error(error));
+        };
+        window.showQuickPick(picks).then((data) => {
+            if (!data) return;
+            let item = configs.find((item) => item.title == data);
+            if (!item || !item.command) return;
+            let command = item.command;
+
+            let params = item.params || [],
+                paramPicks = item.params.map((item) => item.title);
+
+            if (paramPicks.length > 0){
+                window.showQuickPick(paramPicks).then((data) => {
+                    if (!data) return;
+                    let item = params.find((item) => item.title == data),
+                        param = item ? item.param : '';
+                    generateInput(command, param || '');
+                });
+            } else {
+                generateInput(command, '');
+            }
+
         });
 
     }));

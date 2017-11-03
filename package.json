@@ -3,7 +3,7 @@
   "displayName": "angular-cli-helper",
   "description": "Run angular from vscode commandline.",
   "icon": "images/angular.png",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "winpzs",
   "bugs": {
     "url": "https://github.com/winpzs/angular-cli-helper/issues",
@@ -34,60 +34,178 @@
           "type": "array",
           "default": [
             {
-              "command": "ng g component %input% --flat false --spec false",
-              "title": "component/html/css (自动创建目录)"
+              "command": "ng g component %input% %param%",
+              "title": "component",
+              "params":[{
+                "param": "",
+                "title": "default"
+              },{
+                "param": "--flat false --spec true --inline-style false --inline-template false",
+                "title": "创建目录, ts, html, css, spec"
+              },{
+                "param": "--flat false --spec false --inline-style false --inline-template false",
+                "title": "创建目录, ts, html, css"
+              },{
+                "param": "--flat false --spec true --inline-style true --inline-template false",
+                "title": "创建目录, ts, html, spec"
+              },{
+                "param": "--flat false --spec false --inline-style true --inline-template false",
+                "title": "创建目录, ts, html"
+              },{
+                "param": "--flat true --spec true --inline-style true --inline-template true",
+                "title": "ts, spec"
+              },{
+                "param": "--flat true --spec false --inline-style true --inline-template true",
+                "title": "ts"
+              }]
             },
             {
-              "command": "ng g component %input% --flat false --spec false --inline-style true",
-              "title": "component/html (自动创建目录)"
+              "command": "ng g module %input% %param%",
+              "title": "module",
+              "params":[{
+                "param": "",
+                "title": "default"
+              },{
+                "param": "--flat false --spec true",
+                "title": "创建目录, ts, spec"
+              },{
+                "param": "--flat false --spec false",
+                "title": "创建目录, ts"
+              },{
+                "param": "--flat true --spec true",
+                "title": "ts, spec"
+              },{
+                "param": "--flat true --spec false",
+                "title": "ts"
+              }]
             },
             {
-              "command": "ng g component %input% --flat false --spec true",
-              "title": "component/html/css/spec (自动创建目录,全)"
+              "command": "ng g service %input% %param%",
+              "title": "service",
+              "params":[{
+                "param": "",
+                "title": "default"
+              },{
+                "param": "--flat false --spec true",
+                "title": "创建目录, ts, spec"
+              },{
+                "param": "--flat false --spec false",
+                "title": "创建目录, ts"
+              },{
+                "param": "--flat true --spec true",
+                "title": "ts, spec"
+              },{
+                "param": "--flat true --spec false",
+                "title": "ts"
+              }]
             },
             {
-              "command": "ng g component %input% --flat true --spec false",
-              "title": "component/html/css"
+              "command": "ng g directive %input% %param%",
+              "title": "directive",
+              "params":[{
+                "param": "",
+                "title": "default"
+              },{
+                "param": "--flat false --spec true",
+                "title": "创建目录, ts, spec"
+              },{
+                "param": "--flat false --spec false",
+                "title": "创建目录, ts"
+              },{
+                "param": "--flat true --spec true",
+                "title": "ts, spec"
+              },{
+                "param": "--flat true --spec false",
+                "title": "ts"
+              }]
             },
             {
-              "command": "ng g component %input% --flat true --spec false --inline-style true",
-              "title": "component/html"
+              "command": "ng g pipe %input% %param%",
+              "title": "pipe",
+              "params":[{
+                "param": "",
+                "title": "default"
+              },{
+                "param": "--flat false --spec true",
+                "title": "创建目录, ts, spec"
+              },{
+                "param": "--flat false --spec false",
+                "title": "创建目录, ts"
+              },{
+                "param": "--flat true --spec true",
+                "title": "ts, spec"
+              },{
+                "param": "--flat true --spec false",
+                "title": "ts"
+              }]
             },
             {
-              "command": "ng g component %input% --flat true --spec false --inline-style true --inline-template true",
-              "title": "component"
+              "command": "ng g class %input% %param%",
+              "title": "class",
+              "params":[{
+                "param": "",
+                "title": "default"
+              },{
+                "param": "--flat false --spec true",
+                "title": "创建目录, ts, spec"
+              },{
+                "param": "--flat false --spec false",
+                "title": "创建目录, ts"
+              },{
+                "param": "--flat true --spec true",
+                "title": "ts, spec"
+              },{
+                "param": "--flat true --spec false",
+                "title": "ts"
+              }]
             },
             {
-              "command": "ng g module %input% --flat true --spec false",
-              "title": "module"
+              "command": "ng g guard %input% %param%",
+              "title": "guard",
+              "params":[{
+                "param": "",
+                "title": "default"
+              },{
+                "param": "--flat false --spec true",
+                "title": "创建目录, ts, spec"
+              },{
+                "param": "--flat false --spec false",
+                "title": "创建目录, ts"
+              },{
+                "param": "--flat true --spec true",
+                "title": "ts, spec"
+              },{
+                "param": "--flat true --spec false",
+                "title": "ts"
+              }]
             },
             {
-              "command": "ng g service %input% --flat true --spec false",
-              "title": "service"
+              "command": "ng g interface %input% %param%",
+              "title": "interface",
+              "params":[{
+                "param": "",
+                "title": "default"
+              },{
+                "param": "--flat false --spec false",
+                "title": "创建目录, ts"
+              },{
+                "param": "--flat true --spec false",
+                "title": "ts"
+              }]
             },
             {
-              "command": "ng g directive %input% --flat true --spec false",
-              "title": "directive"
-            },
-            {
-              "command": "ng g pipe %input% --flat true --spec false",
-              "title": "pipe"
-            },
-            {
-              "command": "ng g class %input% --flat true --spec false",
-              "title": "class"
-            },
-            {
-              "command": "ng g guard %input% --flat true --spec false",
-              "title": "guard"
-            },
-            {
-              "command": "ng g interface %input% --flat true --spec false",
-              "title": "interface"
-            },
-            {
-              "command": "ng g enum %input% --flat true --spec false",
-              "title": "enum"
+              "command": "ng g enum %input% %param%",
+              "title": "enum",
+              "params":[{
+                "param": "",
+                "title": "default"
+              },{
+                "param": "--flat false --spec false",
+                "title": "创建目录, ts"
+              },{
+                "param": "--flat true --spec false",
+                "title": "ts"
+              }]
             }
           ],
           "description": "ng generate config"
@@ -100,20 +218,20 @@
               "title": "default"
             },
             {
-              "param": "--target=production --environment=prod --aot",
-              "title": "--target=production --environment=prod --aot"
+              "param": "-prod -e prod --aot",
+              "title": "-prod -e prod --aot"
             },
             {
-              "param": "--target=production --aot",
-              "title": "--target=production --aot"
+              "param": "-prod --aot",
+              "title": "-prod --aot"
             },
             {
-              "param": "--target=development --environment=dev",
-              "title": "--target=development --environment=dev"
+              "param": "-dev -e dev",
+              "title": "-dev -e dev"
             },
             {
-              "param": "--target=development",
-              "title": "--target=development"
+              "param": "-dev",
+              "title": "-dev"
             }
           ],
           "description": "ng build params"
@@ -126,20 +244,24 @@
               "title": "default"
             },
             {
-              "param": "--environment=dev",
-              "title": "--environment=dev"
+              "param": "-e dev",
+              "title": "-e dev"
             },
             {
-              "param": "--environment=hmr --hmr true",
-              "title": "--environment=hmr --hmr true"
+              "param": "-e hmr --hmr true",
+              "title": "-e hmr --hmr true"
             },
             {
-              "param": "--prod --environment=prod --aot",
-              "title": "--prod --environment=prod --aot"
+              "param": "-prod -e prod --aot",
+              "title": "-prod -e prod --aot"
             },
             {
-              "param": "--proxy-config proxy.conf.js --environment=dev",
-              "title": "--proxy-config proxy.conf.js --environment=dev"
+              "param": "-pc proxy.conf.js -e dev",
+              "title": "-pc proxy.conf.js -e dev"
+            },
+            {
+              "param": "-pc proxy.conf.js -e hmr --hmr true",
+              "title": "-pc proxy.conf.js -e hmr --hmr true"
             }
           ],
           "description": "ng serve params"

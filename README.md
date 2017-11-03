@@ -15,6 +15,10 @@
 
 ## Changelog
 
+### 1.0.2
+
+1. ng generate导向调整
+
 ### 1.0.1
 
 1. ng serve参数可配置
